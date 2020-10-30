@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Book Ticket</title>
+</head>
+<body>
+<h3>View Tickets</h3>
+<a th:href="@{/ticket/bookTicket}" class="btn btn-primary btn-sm mb-3">Book Ticket
+</a>
+<table class="table table-bordered table-striped" >
+    <thead >
+    <tr>
+        <th>ID</th>
+        <th>Amount</th>
+        <th>Category</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="tempTickets : ${tickets}">
+
+        <td th:text="${tempTickets.id}" />
+        <td th:text="${tempTickets.amount}" />
+        <td th:text="${tempTickets.category}" />
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
