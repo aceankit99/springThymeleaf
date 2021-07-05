@@ -52,4 +52,12 @@ public class TicketService {
         }
         return temp;
     }
+    public String deleteTicker(int id)
+    {
+        Ticket temp=null;
+        Optional<Ticket> ticket=dao.findById(id);
+        temp=ticket.get();
+        dao.delete(temp);
+        return "Ticket has been deleted";
+    }
 }

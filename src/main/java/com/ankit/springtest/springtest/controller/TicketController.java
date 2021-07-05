@@ -3,13 +3,12 @@ package com.ankit.springtest.springtest.controller;
 
 import com.ankit.springtest.springtest.entity.Ticket;
 import com.ankit.springtest.springtest.service.TicketService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 
@@ -56,5 +55,27 @@ public class TicketController {
         System.out.println("called" +ticket.getAmount());
         ticketDao.book(ticket);
         return "redirect:/ticket/viewTickets";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("ticketid") int id, Model theModel)
+    {
+        Ticket ticket=ticketDao.findByID(id);
+        theModel.addAttribute("ticket",ticket);
+        return "ticket/bookTicket";
+
+    }
+    @PutMapping("/updateTicket")
+    public String updateTicket(@RequestBody Ticket ticket)
+    {
+    ticketDao.updateTicket(ticket);
+    return "ticket with ID "+ticket.getId()+" has been updated";
+    }
+
+    @GetMapping("/deleteTicket")
+    public String deletedTicket(@RequestParam("ticketid") int id)
+    {
+    ticketDao.deleteTicker(id);
+    return "redirect:/ticket/viewTickets";
     }
 }

@@ -11,6 +11,7 @@
 <div class="container">
     <h3>Book Ticket</h3>
     <form action="#" th:action="@{book}" th:object="${ticket}" method="post">
+        <input type="hidden" th:field="*{id}" >
         <input class="form-control mb-4 col-4" type="text"  th:field="*{amount}" placeholder="Amount">
         <input class="form-control mb-4 col-4" type="text"  th:field="*{category}" placeholder="Category">
 
